@@ -1,0 +1,15 @@
+   List<Map<String, Object>> nuevaTabla = actor.recall("tabladatos");
+
+        for (Map<String, Object> datosCarrito : nuevaTabla) {
+            List<String> nombres = (List<String>) datosCarrito.get("nombre");
+            int cantidad = (int) datosCarrito.get("cantidad");
+            String precio = (String) datosCarrito.get("precio");
+
+            // Iterar sobre la lista de nombres (si hay varios)
+            for (String nombre : nombres) {
+                System.out.println("Nombre: " + nombre);
+                System.out.println("Cantidad: " + cantidad);
+                System.out.println("precio: " + precio);
+                System.out.println("--------------------");
+            }
+        }
