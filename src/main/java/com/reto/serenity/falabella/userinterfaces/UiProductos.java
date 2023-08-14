@@ -14,4 +14,5 @@ public class UiProductos {
     public static final Target LBL_CARRITO = Target.the("").locatedBy("(//p[@data-testid='total-products-count'])[1]");
     public static final Target LBL_TOTAL_CARRITO = Target.the("").locatedBy("//p[@data-testid='total-amount-SUB_TOTAL']");
     public static final Target BTN_TALLA = Target.the("").locatedBy("(//button[@class=\"jsx-2092780827 size-button rebranded   \"])[1]");
+    public static final Target LBL_CANTIDAD = Target.the("").locatedBy("//div[@class=\"css-gj089s\" and //child::a[contains(text(),'{0}')]]//child::Input");
 }

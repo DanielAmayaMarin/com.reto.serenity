@@ -37,9 +37,9 @@ public class SeleccionarProducto implements Task {
             Map<String, Object> datosCarrito = new HashMap<>();
             datosCarrito.put("nombre", Arrays.asList(randomProduct.getText()));
             actor.attemptsTo(
-                    new ScrollToTarget(LINK_TITLE.of(randomProduct.getText())),
-                    WaitUntil.the(LINK_TITLE.of(randomProduct.getText()), isClickable()).forNoMoreThan(60).seconds(),
-                    Click.on(LINK_TITLE.of(randomProduct.getText()))
+                    new ScrollToTarget(LINK_TITLE.of(randomProduct.getText().trim())),
+                    WaitUntil.the(LINK_TITLE.of(randomProduct.getText().trim()), isClickable()).forNoMoreThan(60).seconds(),
+                    Click.on(LINK_TITLE.of(randomProduct.getText().trim()))
             );
             datosCarrito.put("cantidad", cant);
             actor.attemptsTo(WaitUntil.the(LBL_PRESIO,  isClickable()).forNoMoreThan(60).seconds());

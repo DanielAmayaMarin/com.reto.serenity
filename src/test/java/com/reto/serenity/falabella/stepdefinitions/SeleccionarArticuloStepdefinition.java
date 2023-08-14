@@ -1,6 +1,7 @@
 package com.reto.serenity.falabella.stepdefinitions;
 
 import com.reto.serenity.falabella.questions.VerificarCantidad;
+import com.reto.serenity.falabella.questions.VerificarCantidadUnitaria;
 import com.reto.serenity.falabella.questions.VerificoSubTotal;
 import com.reto.serenity.falabella.tasks.AbrirPagina;
 import com.reto.serenity.falabella.tasks.CerrarPopUp;
@@ -52,6 +53,8 @@ public class SeleccionarArticuloStepdefinition {
     }
     @Then("Debería ver la cantidad por cada producto")
     public void deberíaVerLaCantidadPorCadaProducto() {
-
+        /*theActorInTheSpotlight().should(seeThat(
+                VerificarCantidadUnitaria.cantidad()
+        ));*/
     }
 }
