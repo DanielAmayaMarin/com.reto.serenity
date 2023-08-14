@@ -8,6 +8,7 @@ import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.ScrollToTarget;
+import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -37,6 +38,7 @@ public class SeleccionarProducto implements Task {
             datosCarrito.put("nombre", Arrays.asList(randomProduct.getText()));
             actor.attemptsTo(
                     new ScrollToTarget(LINK_TITLE.of(randomProduct.getText())),
+                    WaitUntil.the(LINK_TITLE.of(randomProduct.getText()), isClickable()).forNoMoreThan(60).seconds(),
                     Click.on(LINK_TITLE.of(randomProduct.getText()))
             );
             datosCarrito.put("cantidad", cant);
@@ -44,6 +46,7 @@ public class SeleccionarProducto implements Task {
             datosCarrito.put("precio", LBL_PRESIO.resolveFor(actor).getText().replace("$", "").trim());
             actor.attemptsTo(
                     SeleccionarCantidad.seleccionar(cant),
+                    Check.whether(BTN_TALLA.resolveFor(actor).isClickable()).andIfSo(Click.on(BTN_TALLA)),
                     WaitUntil.the(BTN_AGREGAR,  isClickable()).forNoMoreThan(60).seconds(),
                     Click.on(BTN_AGREGAR),
                     EsperaExplicita.empleada(6000)

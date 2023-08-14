@@ -10,5 +10,7 @@ Feature: Flujo Seleccionar artículo
     Given Que "Daniel" navego en la página de Falabella
     When Navega aleatoriamente por el menú
     And Selecciona los 3 productos aleatorios
-    Then Válido la cantidad de productos en el carrito de compras
-    Then Válido el subtotal de los productos
+    Then Debería ver la cantidad de productos en el carrito de compras
+    And Debería ver el subtotal de los productos
+    And Debería ver la cantidad por cada producto
+

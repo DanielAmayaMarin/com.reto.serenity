@@ -11,4 +11,7 @@ public class UiProductos {
     public static final Target BTN_INCREMENTAR = Target.the("Boton incrementar").located(By.id("quantity-selector-increment-btn"));
     public static final Target BTN_SEGUIR_COMPRANDO = Target.the("Boton seguir comprando").locatedBy("//button[text()='Seguir comprando']");
     public static final Target CARRITO = Target.the("").located(By.id("testId-UserAction-basket"));
+    public static final Target LBL_CARRITO = Target.the("").locatedBy("(//p[@data-testid='total-products-count'])[1]");
+    public static final Target LBL_TOTAL_CARRITO = Target.the("").locatedBy("//p[@data-testid='total-amount-SUB_TOTAL']");
+    public static final Target BTN_TALLA = Target.the("").locatedBy("(//button[@class=\"jsx-2092780827 size-button rebranded   \"])[1]");
 }

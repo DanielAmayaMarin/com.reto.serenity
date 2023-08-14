@@ -1,5 +1,7 @@
 package com.reto.serenity.falabella.stepdefinitions;
 
+import com.reto.serenity.falabella.questions.VerificarCantidad;
+import com.reto.serenity.falabella.questions.VerificoSubTotal;
 import com.reto.serenity.falabella.tasks.AbrirPagina;
 import com.reto.serenity.falabella.tasks.CerrarPopUp;
 import com.reto.serenity.falabella.tasks.Navegar;
@@ -9,6 +11,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorCalled;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 
@@ -35,12 +38,20 @@ public class SeleccionarArticuloStepdefinition {
         );
 
     }
-    @Then("Válido la cantidad de productos en el carrito de compras")
-    public void válidoLaCantidadDeProductosEnElCarritoDeCompras() {
-
+    @Then("Debería ver la cantidad de productos en el carrito de compras")
+    public void deberíaVerLaCantidadDeProductosEnElCarritoDeCompras() {
+        theActorInTheSpotlight().should(seeThat(
+                VerificarCantidad.validar()
+        ));
     }
-    @Then("Válido el subtotal de los productos")
-    public void válidoElSubtotalDeLosProductos() {
+    @Then("Debería ver el subtotal de los productos")
+    public void deberíaVerElSubtotalDeLosProductos() {
+        theActorInTheSpotlight().should(seeThat(
+                VerificoSubTotal.subTotal()
+        ));
+    }
+    @Then("Debería ver la cantidad por cada producto")
+    public void deberíaVerLaCantidadPorCadaProducto() {
 
     }
 }

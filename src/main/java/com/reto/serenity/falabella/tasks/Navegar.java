@@ -21,13 +21,13 @@ public class Navegar implements Task {
         actor.attemptsTo(
                 WaitUntil.the(BTN_MENU,  isClickable()).forNoMoreThan(60).seconds(),
                 Click.on(BTN_MENU),
-                Click.on(MENU_ITEM_PADRE.of(String.valueOf(numero)))
+                Click.on(MENU_ITEM_PADRE.of(String.valueOf(3)))
         );
         WebElement elemento = ELEMENTOS.resolveFor(actor);
         List<WebElement> productElements = elemento.findElements(By.xpath("//a[@target=\"_self\" and contains(@href,'https://www.falabella.com.co/falabella-co/category')]"));
         int item = (int)(Math.random()*productElements.size()+1);
         actor.attemptsTo(
-                Click.on(ITEM.of(String.valueOf(item)))
+                Click.on(ITEM.of(String.valueOf(6)))
         );
     }
 
