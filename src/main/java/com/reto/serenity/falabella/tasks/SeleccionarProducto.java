@@ -47,13 +47,12 @@ public class SeleccionarProducto implements Task {
             );
 
             datosCarrito.put("cantidad", cant);
-            System.out.println(randomProduct.getText().trim());
-            System.out.println(LBL_PRESIO.resolveFor(actor).getText().replace("$", "").trim());
+            System.out.println(cant);
             actor.attemptsTo(WaitUntil.the(LBL_PRESIO, isVisible()).forNoMoreThan(60).seconds());
             datosCarrito.put("precio", LBL_PRESIO.resolveFor(actor).getText().replace("$", "").trim());
             actor.attemptsTo(
-                    SeleccionarCantidad.seleccionar(cant),
                     Check.whether(BTN_TALLA.resolveFor(actor).isClickable()).andIfSo(Click.on(BTN_TALLA)),
+                    SeleccionarCantidad.seleccionar(cant),
                     WaitUntil.the(BTN_AGREGAR, isClickable()).forNoMoreThan(60).seconds(),
                     Click.on(BTN_AGREGAR),
                     EsperaExplicita.empleada(6000)
