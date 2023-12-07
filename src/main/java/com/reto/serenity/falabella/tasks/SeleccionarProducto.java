@@ -12,15 +12,18 @@ import net.serenitybdd.screenplay.conditions.Check;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import java.util.*;
+
 import static com.reto.serenity.falabella.userinterfaces.UiProductos.*;
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 public class SeleccionarProducto implements Task {
 
     private int cantidad;
 
-    public SeleccionarProducto(int cantidad){
+    public SeleccionarProducto(int cantidad) {
         this.cantidad = cantidad;
     }
 
@@ -31,23 +34,27 @@ public class SeleccionarProducto implements Task {
         for (int i = 0; i < cantidad; i++) {
             WebElement elemento = CONTENEDOR_PADRE.resolveFor(actor);
             List<WebElement> productElements = elemento.findElements(By.xpath("//b[contains(@id,'testId-pod-displaySubTitle')]"));
-            int item = (int)(Math.random()*productElements.size()+1);
+            int item = (int) (Math.random() * productElements.size() + 1);
             WebElement randomProduct = productElements.get(item);
-            int cant = (int)(Math.random()*10+1);
+            int cant = (int) (Math.random() * 10 + 1);
             Map<String, Object> datosCarrito = new HashMap<>();
             datosCarrito.put("nombre", Arrays.asList(randomProduct.getText()));
+
             actor.attemptsTo(
                     new ScrollToTarget(LINK_TITLE.of(randomProduct.getText().trim())),
                     WaitUntil.the(LINK_TITLE.of(randomProduct.getText().trim()), isClickable()).forNoMoreThan(60).seconds(),
                     Click.on(LINK_TITLE.of(randomProduct.getText().trim()))
             );
+
             datosCarrito.put("cantidad", cant);
-            actor.attemptsTo(WaitUntil.the(LBL_PRESIO,  isClickable()).forNoMoreThan(60).seconds());
+            System.out.println(randomProduct.getText().trim());
+            System.out.println(LBL_PRESIO.resolveFor(actor).getText().replace("$", "").trim());
+            actor.attemptsTo(WaitUntil.the(LBL_PRESIO, isVisible()).forNoMoreThan(60).seconds());
             datosCarrito.put("precio", LBL_PRESIO.resolveFor(actor).getText().replace("$", "").trim());
             actor.attemptsTo(
                     SeleccionarCantidad.seleccionar(cant),
                     Check.whether(BTN_TALLA.resolveFor(actor).isClickable()).andIfSo(Click.on(BTN_TALLA)),
-                    WaitUntil.the(BTN_AGREGAR,  isClickable()).forNoMoreThan(60).seconds(),
+                    WaitUntil.the(BTN_AGREGAR, isClickable()).forNoMoreThan(60).seconds(),
                     Click.on(BTN_AGREGAR),
                     EsperaExplicita.empleada(6000)
             );
@@ -59,10 +66,10 @@ public class SeleccionarProducto implements Task {
                 new ScrollToTarget(CARRITO),
                 Click.on(CARRITO),
                 EsperaExplicita.empleada(6000));
-
     }
 
-    public static SeleccionarProducto producto(int cantidad){
+
+    public static SeleccionarProducto producto(int cantidad) {
         return Tasks.instrumented(SeleccionarProducto.class, cantidad);
     }
 

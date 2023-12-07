@@ -22,7 +22,7 @@ public class SeleccionarCantidad implements Interaction {
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-            WebDriver driver = BrowseTheWeb.as(actor).getDriver();
+
             if (cantidad != 0) {
                 if (cantidad != 1) {
                     for (int j = 1; j < cantidad; j++) {
