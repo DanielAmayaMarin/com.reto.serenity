@@ -9,7 +9,7 @@ Feature: Flujo Seleccionar artículo
   Scenario: Usuario agregar productos al asar al carrito de compras
     Given Que "Daniel" navego en la página de Falabella
     When Navega aleatoriamente por el menú
-    And Selecciona los 3 productos aleatorios
+    And Selecciona los 5 productos aleatorios
     Then Debería ver la cantidad de productos en el carrito de compras
     And Debería ver el subtotal de los productos
     And Debería ver la cantidad por cada producto

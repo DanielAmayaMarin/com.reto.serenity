@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class UiProductos {
     public static final Target CONTENEDOR_PADRE = Target.the("").locatedBy("//div[@class='jsx-200723616 search-results-4-grid grid-pod' or @class='jsx-200723616 search-results-list' or @class='jsx-1484439449 search-results-4-grid grid-pod']");
     public static final Target LINK_TITLE = Target.the("").locatedBy("//b[contains(@id,'testId-pod-displaySubTitle') and contains(text(),'{0}')]");
-    public static final Target LBL_PRESIO = Target.the("").locatedBy("(//span[contains(text(),'$')])[2]");
+    public static final Target LBL_PRESIO = Target.the("").locatedBy("//span[@class='copy17 primary senary jsx-2835692965 bold      line-height-29']");
     public static final Target BTN_AGREGAR = Target.the("").located(By.id("add-to-cart-button"));
     public static final Target BTN_INCREMENTAR = Target.the("Boton incrementar").located(By.id("quantity-selector-increment-btn"));
     public static final Target BTN_MODAL_DIRECCION = Target.the("Boton cerrar alerta").located(By.id("testId-modal-close"));

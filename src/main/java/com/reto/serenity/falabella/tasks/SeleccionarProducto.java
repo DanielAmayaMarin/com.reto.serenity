@@ -39,15 +39,12 @@ public class SeleccionarProducto implements Task {
             int cant = (int) (Math.random() * 10 + 1);
             Map<String, Object> datosCarrito = new HashMap<>();
             datosCarrito.put("nombre", Arrays.asList(randomProduct.getText()));
-
             actor.attemptsTo(
                     new ScrollToTarget(LINK_TITLE.of(randomProduct.getText().trim())),
                     WaitUntil.the(LINK_TITLE.of(randomProduct.getText().trim()), isClickable()).forNoMoreThan(60).seconds(),
                     Click.on(LINK_TITLE.of(randomProduct.getText().trim()))
             );
-
             datosCarrito.put("cantidad", cant);
-            System.out.println(cant);
             actor.attemptsTo(WaitUntil.the(LBL_PRESIO, isVisible()).forNoMoreThan(60).seconds());
             datosCarrito.put("precio", LBL_PRESIO.resolveFor(actor).getText().replace("$", "").trim());
             actor.attemptsTo(
@@ -59,6 +56,7 @@ public class SeleccionarProducto implements Task {
             );
             tabla.add(datosCarrito);
             BrowseTheWeb.as(actor).getDriver().navigate().back();
+            actor.attemptsTo(EsperaExplicita.empleada(6000));
         }
         actor.remember("tabladatos", tabla);
         actor.attemptsTo(
